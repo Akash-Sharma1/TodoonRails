@@ -18,6 +18,9 @@
     <% if (@todo.duedate) %>
     <%= @todo.duedate %>
     <% else %>
-    none
+    Na
     <% end %>
 </p>
+
+
+<%= link_to 'Back to all Tasks', todolists_path %>

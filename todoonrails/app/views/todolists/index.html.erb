@@ -1,6 +1,8 @@
 <h1>To-do List</h1>
 
-<table>
+<%= link_to 'New Task', new_todolist_path %>
+
+<table border=1>
     <tr>
         <th>Id</th>
         <th>Description</th>
@@ -16,9 +18,15 @@
         <td><%= todo.id %></td>
         <td><%= todo.description %></td>
         <td><%= todo.priority %></td>
-        <td><%= todo.duedate %></td>
-        <td><%= link_to 'Show', todolists_path(todo) %></td>
-        <td><%= link_to 'Edit', todolists_path(todo) %></td>
+        <td>
+            <% if (todo.duedate) %>
+            <%= todo.duedate %>
+            <% else %>
+            Na
+            <% end %>
+        </td>
+        <td><%= link_to 'Show', todolist_path(todo) %></td>
+        <td><%= link_to 'Edit', edit_todolist_path(todo) %></td>
         <td><%= link_to 'Delete', todolists_path(todo) %></td>
     </tr>
     <% end %>
