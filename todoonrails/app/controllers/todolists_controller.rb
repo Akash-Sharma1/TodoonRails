@@ -4,6 +4,9 @@ class TodolistsController < ApplicationController
     end
     
     def show
+        
+        return not_found unless Todolist.exists?(id: params[:id])
+        
         @todo = Todolist.find(params[:id])
     end
 
@@ -12,6 +15,9 @@ class TodolistsController < ApplicationController
     end
 
     def edit
+        
+        return not_found unless Todolist.exists?(id: params[:id])
+
         @todo = Todolist.find(params[:id])
     end
      
@@ -27,6 +33,9 @@ class TodolistsController < ApplicationController
       end
     
     def update
+        
+        return not_found unless Todolist.exists?(id: params[:id])
+
         @todo = Todolist.find(params[:id])
         
         if @todo.update(todo_params)
@@ -37,7 +46,11 @@ class TodolistsController < ApplicationController
     end
 
     def destroy
+        
+        return not_found unless Todolist.exists?(id: params[:id])
+
         @todo = Todolist.find(params[:id])
+        
         @todo.destroy
        
         redirect_to todolists_path
@@ -46,5 +59,9 @@ class TodolistsController < ApplicationController
     private
         def todo_params
             params.require(:todo).permit(:description, :priority, :duedate)
+        end
+    
+    def not_found
+        raise ActionController::RoutingError.new('Not Found')
         end
 end
