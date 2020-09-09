@@ -1,0 +1,25 @@
+<h1>To-do List</h1>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Description</th>
+        <th>Priority</th>
+        <th>Due Date</th>
+        <th>View</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    <% @todos.each do |todo| %>
+    <tr>
+        <td><%= todo.id %></td>
+        <td><%= todo.description %></td>
+        <td><%= todo.priority %></td>
+        <td><%= todo.duedate %></td>
+        <td><%= link_to 'Show', todolists_path(todo) %></td>
+        <td><%= link_to 'Edit', todolists_path(todo) %></td>
+        <td><%= link_to 'Delete', todolists_path(todo) %></td>
+    </tr>
+    <% end %>
+</table>
