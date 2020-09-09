@@ -37,10 +37,10 @@ class TodolistsController < ApplicationController
     end
 
     def destroy
-        @todo = todo.find(params[:id])
+        @todo = Todolist.find(params[:id])
         @todo.destroy
        
-        redirect_to todos_path
+        redirect_to todolists_path
       end
         
     private
