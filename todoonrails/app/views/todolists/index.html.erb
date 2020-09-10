@@ -1,0 +1,35 @@
+<h1>To-do List</h1>
+
+<%= link_to 'New Task', new_todolist_path %>
+
+<table border=1>
+    <tr>
+        <th>Id</th>
+        <th>Description</th>
+        <th>Priority</th>
+        <th>Due Date</th>
+        <th>View</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    <% @todos.each do |todo| %>
+    <tr>
+        <td><%= todo.id %></td>
+        <td><%= todo.description %></td>
+        <td><%= todo.priority %></td>
+        <td>
+            <% if (todo.duedate) %>
+            <%= todo.duedate %>
+            <% else %>
+            Na
+            <% end %>
+        </td>
+        <td><%= link_to 'Show', todolist_path(todo) %></td>
+        <td><%= link_to 'Edit', edit_todolist_path(todo) %></td>
+        <td><%= link_to 'Delete', todolist_path(todo),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+</table>
